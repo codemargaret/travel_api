@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  
+
   def index
     @reviews = Review.all
     json_response(@reviews)
@@ -12,17 +12,25 @@ class ReviewsController < ApplicationController
 
   def create
     @review = Review.create!(review_params)
-    json_response(@review)
+    json_response(@review, :created)
   end
 
   def update
     @review = Review.find(params[:id])
-    @review.update(review_params)
+    if @review.update!(review_params)
+      render status: 200, json: {
+        message: "Your review has successfully been updated!"
+      }
+    end
   end
 
   def destroy
     @review = Review.find(params[:id])
-    @review.destroy
+    if @review.destroy!
+      render status: 200, json: {
+        message: "Your review has been destroyed, just like your mom last night!"
+      }
+    end
   end
 
   private
