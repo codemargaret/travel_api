@@ -35,6 +35,7 @@ class Seed
       destination = Destination.create!(
       country: Faker::RickAndMorty.location,
       city: Faker::LordOfTheRings.location,
+      reviews_count: Faker::Number.between(1, 10)
       )
     end
   end

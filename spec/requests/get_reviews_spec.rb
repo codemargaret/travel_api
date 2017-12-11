@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 describe "get all reviews route", :type => :request do
-  let!(:users) { FactoryBot.create_list(:user, 20) }
-  let!(:destinations) { FactoryBot.create_list(:destination, 20) }
+  let!(:user) { FactoryBot.create(:user) }
+  let!(:destination) { FactoryBot.create(:destination) }
   let!(:reviews) { FactoryBot.create_list(:review, 20) }
+  # binding.pry
 
   before { get '/reviews' }
 
