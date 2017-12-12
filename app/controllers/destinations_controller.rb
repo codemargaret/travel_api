@@ -1,10 +1,14 @@
 class DestinationsController < ApplicationController
 
   def index
+      @destination = Destination.order("RANDOM()").first
+      json_response(@destination)
+  end
+
+  def reviews_count
     reviews_count = params[:reviews_count]
-    binding.pry
-    @destinations = Destination.find(reviews_count)
-    json_response(@destinations)
+    @reviews_count = Destination.where(:reviews_count => reviews_count)
+    json_response(@reviews_count)
   end
 
   def show
