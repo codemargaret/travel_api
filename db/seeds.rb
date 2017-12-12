@@ -13,6 +13,7 @@ class Seed
     seed.generate_users
     seed.generate_destinations
     seed.generate_reviews
+    seed.generate_admin
   end
 
   def destroy_seeds
@@ -51,6 +52,21 @@ class Seed
       )
       puts "Review #{i}: Author is #{random_user.id}, Destination is #{review.destination_id}, and the content is '#{review.content}'."
     end
+  end
+
+  def generate_admin
+    random_destination = Destination.all.sample
+    user = User.create(
+    email: 'yourmom@gmail.com',
+    password: 'yourmom',
+    admin: true
+    )
+    user.reviews.create(
+    user_id: user.id,
+    destination_id: random_destination.id,
+    content: 'Your mom is a lovely woman.',
+    rating: 5
+    )
   end
 
 end
