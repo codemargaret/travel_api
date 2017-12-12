@@ -58,8 +58,7 @@ class Seed
     random_destination = Destination.all.sample
     user = User.create(
     email: 'yourmom@gmail.com',
-    password: 'yourmom',
-    admin: true
+    password: 'yourmom'
     )
     user.reviews.create(
     user_id: user.id,
