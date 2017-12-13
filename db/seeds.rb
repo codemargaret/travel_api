@@ -29,6 +29,9 @@ class Seed
       password: Faker::Internet.password,
       )
     end
+    User.create(
+      email: 'user@example.com', nickname: 'UOne', name: 'User One', password: 'monkey67'
+    )
   end
 
   def generate_destinations
