@@ -1,9 +1,10 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!, except: [ :index ]
-  
+
   def index
     @reviews = Review.all
-    json_response(@reviews)
+    @page_reviews = @reviews.paginate(:page => params[:page], :per_page => 5)
+    json_response(@page_reviews)
   end
 
   def show
